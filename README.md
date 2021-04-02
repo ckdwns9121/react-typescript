@@ -1,46 +1,57 @@
-# Getting Started with Create React App
+### TypeScript X React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. React.FC의 장단점.
+    * 장점
+        - React.FC를 사용 할 때는 props의 타입릏 Generics로 넣어서 사용한다.   
+        - 첫 번째는, props에 기본적으로 children이 들어가있다.   
+        - 두 번째는 컴포넌트의 defaultProps, proptTypes, contextTypes를 설정할 때 자동완성이 될 수 있다.
+    * 단점
+        - children이 옵션 형태로 들어가 있다보니 컴포넌트의 props 타입이 명백하지 않다.
+        - 어떤 컴포넌트에 children이 들어가고 싶지 않을 때 그에 대한 처리를 해야한다.
+        - defaultProps를 넣어도 속성이 없으면 오류
 
-## Available Scripts
+2. 컴포넌트에 생략할 수 있는 props 설정하기
+    - 컴포넌트의 props중에 생략해도 되는 값이 있다면 '?' 키워드를 사용하면 된다.
 
-In the project directory, you can run:
+3. 컴포넌트에서 함수 타입의 props 받아오기
 
-### `yarn start`
+``` 
+    // Greetring.tsx
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    type GreetingsProps={
+        name :string;
+        mark:string;
+        optional? : string;
+        onClick: (name: string) =>void 
+    }
+    function Greetrings ({name,mark,optional,onClick} : GreetringProps){
+        const handleClick =()=> onClick(name);
+        return(
+            <div>
+                Hello , {name} {mark}
+                {optional && <p>{optional}</p>}
+                <button onClick={handleClick}> click! </button>
+            </div>
+        )
+    }
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    Greetrings.defaultProps={
+        mark:'!'
+    }
+    export default Greetings;
+```
 
-### `yarn test`
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    const App: React.FC=()=>{
+        const onClick =(name:string) =>{
+            console.log(`${name}says hello`);
+        }
+        return(
+            <Greetrings name="hello" onClick={onClick}/>
+        )
+    }
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+    export default App
+```
+4. useState및 이벤트 관리

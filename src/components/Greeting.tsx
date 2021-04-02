@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+// React.FC의 장단점.
 type GreetingsProps ={
     name: string;
 }
