@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Counter from './components/Counter';
 import MyForm from './components/MyForm';
+import CounterContainer from './container/CounterContainer';
 
 function App() {
   const onSubmit =(form : {name:string; description : string}) =>{
@@ -10,8 +10,8 @@ function App() {
   }
   return (
     <div className="App">
-      <Counter/>
-      <MyForm onSubmit ={onSubmit}/>
+      <CounterContainer/>
+      {/* <MyForm onSubmit ={onSubmit}/> */}
     </div>  
   );
 }
