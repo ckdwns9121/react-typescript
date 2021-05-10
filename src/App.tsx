@@ -1,18 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MyForm from './components/MyForm';
 import CounterContainer from './container/CounterContainer';
+import Home from './page/Home';
+import About from './page/About';
+import {BrowserRouter as Router, Switch , Route} from 'react-router-dom';
 
 function App() {
-  const onSubmit =(form : {name:string; description : string}) =>{
-    console.log(form);
-  }
+  // const onSubmit =(form : {name:string; description : string}) =>{
+  //   console.log(form);
+  // }
   return (
-    <div className="App">
-      <CounterContainer/>
-      {/* <MyForm onSubmit ={onSubmit}/> */}
-    </div>  
+    <Router>
+    <Switch>
+      <Route path='/' component={Home} exact />
+      <Route path='/about/:id?' component={About}  />
+    </Switch>
+  </Router>
   );
 }
 

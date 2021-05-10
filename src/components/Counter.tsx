@@ -1,7 +1,5 @@
 
 
-import React from 'react';
-
 type CounterProps ={
   count : number;
   onIncrease : ()=>void

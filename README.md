@@ -55,3 +55,22 @@
     export default App
 ```
 4. useState및 이벤트 관리
+
+    - useState<number>()와 같이 Generics를 사용하여 해당 상태에 어떤 타입을 가지고 있을지 설정만 하면 된다.
+
+5. useReducer
+
+```
+    type Action ={type:'INCREASE'} | {type:'DECREASE'}; // 액션을 OR연산자로 연달아 선언.
+
+    function reducer (state:number , action:Action) : number{
+        switch(action.type){
+            case 'INCREASE':
+                return state+1;
+            case 'DECREASE':
+                return state-1;
+            default :
+                throw new Error('undefined');
+        }
+    }
+``` 
