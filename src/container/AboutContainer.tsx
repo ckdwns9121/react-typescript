@@ -1,11 +1,13 @@
 type AboutProps ={
-    id: string
+    id?: string
+    tab?:string
 }
 
-function AboutContainer ({id}:AboutProps){
+function AboutContainer ({id,tab}:AboutProps){
     return(
         <div>
-            어바웃 {id}
+            about {id}
+            {tab ==='test' && <div>test</div>} 
         </div>
     )
 }

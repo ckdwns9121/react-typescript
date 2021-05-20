@@ -13,7 +13,7 @@ function App() {
     <Router>
     <Switch>
       <Route path='/' component={Home} exact />
-      <Route path='/about/:id?' component={About}  />
+      <Route path='/about/:tab?/:id?' component={About}  />
     </Switch>
   </Router>
   );
