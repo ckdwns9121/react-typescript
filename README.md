@@ -3,7 +3,7 @@
 ## 0. 프로젝트 생성
 
 ```
-    $ npx create-react-app ts-react-tutorial --typescript
+$ npx create-react-app ts-react-tutorial --typescript
 ```
 
 1. React.FC의 장단점.
