@@ -1,6 +1,6 @@
-### TypeScript X React
+## TypeScript X React
 
-0. 프로젝트 생성
+## 0. 프로젝트 생성
 
 ```
     $ npx create-react-app ts-react-tutorial --typescript
@@ -21,81 +21,76 @@
 
 3. 컴포넌트에서 함수 타입의 props 받아오기
 
-``` 
-    // Greetring.tsx
-
-    type GreetingsProps={
-        name :string;
-        mark:string;
-        optional? : string;
-        onClick: (name: string) =>void 
-    }
-    function Greetrings ({name,mark,optional,onClick} : GreetringProps){
-        const handleClick =()=> onClick(name);
-        return(
-            <div>
-                Hello , {name} {mark}
-                {optional && <p>{optional}</p>}
-                <button onClick={handleClick}> click! </button>
-            </div>
+```javascript
+type GreetingsProps={
+    name :string;
+    mark:string;
+    optional? : string;
+    onClick: (name: string) =>void 
+}
+function Greetrings ({name,mark,optional,onClick} : GreetringProps){
+    const handleClick =()=> onClick(name);
+    return(
+        <div>
+            Hello , {name} {mark}
+            {optional && <p>{optional}</p>}
+            <button onClick={handleClick}> click! </button>
+        </div>
         )
     }
 
-    Greetrings.defaultProps={
-        mark:'!'
+Greetrings.defaultProps={
+    mark:'!'
+}
+export default Greetings;
+```
+
+```javascript
+const App: React.FC=()=>{
+    const onClick =(name:string) =>{
+           console.log(`${name}says hello`);
     }
-    export default Greetings;
-```
+    return(
+        <Greetrings name="hello" onClick={onClick}/>
+    )
+}
 
+export default App
 ```
+## 4. useState및 이벤트 관리
 
-    const App: React.FC=()=>{
-        const onClick =(name:string) =>{
-            console.log(`${name}says hello`);
-        }
-        return(
-            <Greetrings name="hello" onClick={onClick}/>
-        )
+- useState<number>()와 같이 **Generics**를 사용하여 해당 상태에 어떤 타입을 가지고 있을지 설정만 하면 된다.
+
+## 5. useReducer
+
+```javascript
+type Action ={type:'INCREASE'} | {type:'DECREASE'}; // 액션을 OR연산자로 연달아 선언.
+
+function reducer (state:number , action:Action) : number{
+    switch(action.type){
+        case 'INCREASE':
+             return state+1;
+        case 'DECREASE':
+            return state-1;
+         default :
+            throw new Error('undefined');
     }
-
-    export default App
-```
-4. useState및 이벤트 관리
-
-    - useState<number>()와 같이 Generics를 사용하여 해당 상태에 어떤 타입을 가지고 있을지 설정만 하면 된다.
-
-5. useReducer
-
-```
-    type Action ={type:'INCREASE'} | {type:'DECREASE'}; // 액션을 OR연산자로 연달아 선언.
-
-    function reducer (state:number , action:Action) : number{
-        switch(action.type){
-            case 'INCREASE':
-                return state+1;
-            case 'DECREASE':
-                return state-1;
-            default :
-                throw new Error('undefined');
-        }
-    }
+}
 ``` 
+## 6. Router
 
-
-6. Router
-
-타입스크립트에서 match값을 쓰려면 RouteComponentProps 타입이 필요하다.   
+타입스크립트에서 match값을 쓰려면 **RouteComponentProps** 타입이 필요하다.   
 하지만 params에 있는 id를 꺼내 쓰려면 에러가 뜬다.   
 RouteComponentProps에서 제네릭 타입을 주지 않았기 때문에 타입을 선언하고 받는다. 
-```
-   import {RouteComponentProps} from 'react-router-dom';
+```javascript
+import {RouteComponentProps} from 'react-router-dom';
 
-   interface MatchParams{
-       id : string
-   }
-   function Home({match}: RouteComponentProps<MatchParams>){
-       return(
-           <></>
-       )
-   }
+interface MatchParams{
+    id : string
+}
+function Home({match}: RouteComponentProps<MatchParams>){
+    return(
+        <></>
+    )
+}
 ```
