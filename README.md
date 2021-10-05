@@ -6,7 +6,7 @@
 $ npx create-react-app ts-react-tutorial --typescript
 ```
 
-1. React.FC의 장단점.
+## 1. React.FC의 장단점.
     * 장점
         - React.FC를 사용 할 때는 props의 타입릏 Generics로 넣어서 사용한다.   
         - 첫 번째는, props에 기본적으로 children이 들어가있다.   
@@ -16,10 +16,10 @@ $ npx create-react-app ts-react-tutorial --typescript
         - 어떤 컴포넌트에 children이 들어가고 싶지 않을 때 그에 대한 처리를 해야한다.
         - defaultProps를 넣어도 속성이 없으면 오류
 
-2. 컴포넌트에 생략할 수 있는 props 설정하기
+## 2. 컴포넌트에 생략할 수 있는 props 설정하기
     - 컴포넌트의 props중에 생략해도 되는 값이 있다면 '?' 키워드를 사용하면 된다.
 
-3. 컴포넌트에서 함수 타입의 props 받아오기
+## 3. 컴포넌트에서 함수 타입의 props 받아오기
 
 ```javascript
 type GreetingsProps={
