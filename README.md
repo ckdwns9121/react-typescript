@@ -62,6 +62,7 @@ export default App
 - useState<number>()와 같이 **Generics**를 사용하여 해당 상태에 어떤 타입을 가지고 있을지 설정만 하면 된다.
 
 ## 5. useReducer
+**객체 리터럴**로 액션타입을 선언한다.
 
 ```javascript
 type Action ={type:'INCREASE'} | {type:'DECREASE'}; // 액션을 OR연산자로 연달아 선언.
