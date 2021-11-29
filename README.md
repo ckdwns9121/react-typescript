@@ -93,3 +93,11 @@ function Home({ match }: RouteComponentProps<MatchParams>) {
   return <></>;
 }
 ```
+
+## 7. 이외
+
+> 리덕스는 Redux Toolkit Js를 활용하자.
+
+[Redux Toolkit Js 정리](https://github.com/ckdwns9121/TIL/blob/master/React/redux-toolkit-js.md)
+
+> type은 타입일 때 interface는 객체일때 쓰자
