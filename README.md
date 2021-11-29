@@ -83,7 +83,7 @@ function reducer(state: number, action: Action): number {
 하지만 params에 있는 id를 꺼내 쓰려면 에러가 뜬다.  
 RouteComponentProps에서 제네릭 타입을 주지 않았기 때문에 타입을 선언하고 받는다.
 
-```javascript
+```ts
 import { RouteComponentProps } from 'react-router-dom';
 
 interface MatchParams {
