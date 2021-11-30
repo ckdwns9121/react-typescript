@@ -2,10 +2,10 @@
 
 ## 목차
 
-- [프로젝트생성](#-프로젝트생성)
-- [Router](#-Router)
+- [1. 프로젝트 생성](#-프로젝트-생성)
+- [2. function type component](#function-type-component)
 
-## 프로젝트생성
+## 프로젝트 생성
 
 ```
 $ npx create-react-app ts-react-tutorial --typescript
@@ -21,11 +21,7 @@ $ npx create-react-app ts-react-tutorial --typescript
   - 어떤 컴포넌트에 children이 들어가고 싶지 않을 때 그에 대한 처리를 해야한다.
   - defaultProps를 넣어도 속성이 없으면 오류
 
-## 2. 컴포넌트에 생략할 수 있는 props 설정하기
-
-- 컴포넌트의 props중에 생략해도 되는 값이 있다면 '?' 키워드를 사용하면 된다.
-
-## 3. 컴포넌트에서 함수 타입의 props 받아오기
+## function type component
 
 ```ts
 interface GreetingsProps {
@@ -52,6 +48,8 @@ Greetrings.defaultProps = {
 export default Greetings;
 ```
 
+`컴포넌트의 props중에 생략해도 되는 값이 있다면 '?' 키워드를 사용하면 된다.`
+
 ```ts
 const App: React.FC = () => {
   const onClick = (name: string) => {
@@ -63,11 +61,11 @@ const App: React.FC = () => {
 export default App;
 ```
 
-## 4. useState및 이벤트 관리
+## useState
 
 - useState<number>()와 같이 **Generics**를 사용하여 해당 상태에 어떤 타입을 가지고 있을지 설정만 하면 된다.
 
-## 5. useReducer
+## useReducer
 
 **객체 리터럴**로 액션타입을 선언한다.
 
@@ -86,7 +84,7 @@ function reducer(state: number, action: Action): number {
 }
 ```
 
-## 6. Router
+## Router
 
 타입스크립트에서 match값을 쓰려면 **RouteComponentProps** 타입이 필요하다.  
 하지만 params에 있는 id를 꺼내 쓰려면 에러가 뜬다.  
