@@ -4,6 +4,9 @@
 
 - [1. 프로젝트 생성](#-프로젝트-생성)
 - [2. function type component](#function-type-component)
+- [3. useState](#usestate)
+- [4. Router](#router)
+- [5. redux](#리덕스)
 
 ## 프로젝트 생성
 
@@ -101,7 +104,7 @@ function Home({ match }: RouteComponentProps<MatchParams>) {
 }
 ```
 
-## 7. 리덕스
+## 리덕스
 
 > 리덕스는 Redux Toolkit Js를 활용하자.  
 > type은 타입일 때 interface는 객체일때 쓰자.  
