@@ -14,7 +14,7 @@
 $ npx create-react-app ts-react-tutorial --typescript
 ```
 
-## 1. React.FC의 장단점
+## React.FC의 장단점
 
 - 장점 - React.FC를 사용 할 때는 props의 타입을 **Generics**로 넣어서 사용한다.
   - 첫 번째는, props에 기본적으로 **children**이 들어가있다.
