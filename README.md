@@ -87,11 +87,11 @@ function reducer(state: number, action: Action): number {
 }
 ```
 
-## Router
+## Router v6 이전
 
-타입스크립트에서 match값을 쓰려면 **RouteComponentProps** 타입이 필요하다.  
+~~타입스크립트에서 match값을 쓰려면 **RouteComponentProps** 타입이 필요하다.  
 하지만 params에 있는 id를 꺼내 쓰려면 에러가 뜬다.  
-RouteComponentProps에서 **제네릭 타입**을 주지 않았기 때문에 타입을 선언하고 받는다.
+RouteComponentProps에서 **제네릭 타입**을 주지 않았기 때문에 타입을 선언하고 받는다.~~ 버전 업데이트로 인해 새 버전 내용을 작성하였습니다.
 
 ```ts
 import { RouteComponentProps } from 'react-router-dom';
@@ -104,10 +104,97 @@ function Home({ match }: RouteComponentProps<MatchParams>) {
 }
 ```
 
+## Router v6
+
+### 설치
+
+```
+$ npm install react-router-dom@6
+```
+
+### Switch 대신 Routes
+
+```js
+<Routes>
+  <Route path="/login" element={<Login />} />
+</Routes>
+```
+
+### Route에 component 대신 element 사용
+
+```js
+<Route path="/" exact element={<HomePage />} />
+<Route path="/login" exact element={<LoginPage />} />
+```
+
+### exact 는 삭제
+
+```js
+<Route path="/login" element={<UsersPage />} />
+
+//여러 라우팅을 매칭하고 싶은 경우 URL 뒤에 *을 사용한다.
+<Routes>
+  <Route path="member/*" element={<Member />} />
+</Routes>
+
+```
+
+### 중첩 라우팅
+
+```js
+<Routes>
+  <Route path="/member">
+    <Route path=":memberId" /> // /member/:memberId
+  </Route>
+</Routes>
+```
+
+### Not Found
+
+```js
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="dashboard" element={<Dashboard />} />
+  <Route path="*" element={<NotFound />} />
+</Routes>
+```
+
+### useHistory 대신 useNavigate
+
+```js
+const navigate = useNavigate();
+
+navigate('/');
+navigate(-1);
+navigate(-2);
+navigate(`/user/${user._id}`);
+```
+
+### Optional URL 파라미터 사라짐. 필요하면 Route 2개 만들어야 함
+
+```js
+<Route path="/optional/:value?" element={<Optional />} />
+<Route path="/optional" element={<Optional />} />
+```
+
+### id path 이용하기
+
+```js
+import React from 'react';
+import { useParams } from 'react-router';
+
+const WebPost = () => {
+  const { id } = useParams();
+  return <div>#{id}번째 포스트</div>;
+};
+
+export default WebPost;
+```
+
 ## 리덕스
 
-> 리덕스는 Redux Toolkit Js를 활용하자.  
-> type은 타입일 때 interface는 객체일때 쓰자.  
+> 리덕스는 Redux Toolkit Js를 활용하자.
+> type은 타입일 때 interface는 객체일때 쓰자.
 > [Redux Toolkit Js 정리](https://github.com/ckdwns9121/TIL/blob/master/React/redux-toolkit-js.md)
 
 #### 리덕스 사가
@@ -115,13 +202,17 @@ function Home({ match }: RouteComponentProps<MatchParams>) {
 - redux와 redux-saga 설치하기
 
 ```
+
 $ yarn add redux react-redux @types/react-redux redux-saga
+
 ```
 
 - typesafe-actions 설치
 
 ```
+
 $ yarn add typesafe-actions
+
 ```
 
 - redux store 작성
