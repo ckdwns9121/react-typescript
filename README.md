@@ -11,7 +11,9 @@
 ## 프로젝트 생성
 
 ```
-$ npx create-react-app ts-react-tutorial --typescript
+$npx create-react-app my-app --template typescript
+#or
+$yarn create react-app my-app --template typescript
 ```
 
 ## React.FC의 장단점
